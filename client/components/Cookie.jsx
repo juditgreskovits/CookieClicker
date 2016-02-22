@@ -5,10 +5,12 @@ Cookie = React.createClass({
   getMeteorData() {
 
     const gameId = this.props.gameId;
-    const gameSub = Meteor.subscribe('games');
+    const gameSubHandle = Meteor.subscribe('games');
+    const loading = !gameSubHandle.ready();
 
     return {
-      game: Games.find({ _id : gameId }).fetch()
+      loading: loading,
+      game: Games.findOne({ _id : gameId })
     }
   },
 
@@ -16,18 +18,22 @@ Cookie = React.createClass({
 
     const gameId = this.data.game._id;
 
-    console.log('Cookie.onCookieClick gameId = ' + gameId);
-
     Meteor.call('cookieClick', gameId, (error, result) => {
 				console.log('error = ' + error + ' result = ' + result);
-				// react.history.pushState(null, '/results');
-			});
-
+		});
   },
 
   render() {
 
-    console.log('Cookie.render this.data.game.clicks = ' + this.data.game.clicks);
+    const loading = this.data.loading;
+
+    if(loading) {
+      return (
+        <p>Loading</p>
+      )
+    }
+
+    const game = this.data.game;
 
     return (
       <div>

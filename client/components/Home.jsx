@@ -3,25 +3,25 @@ Home = React.createClass({
   mixins: [ReactMeteorData],
 
   getMeteorData() {
-    var gameId = Session.get('CookieClickerGameId');
+    var gameId = localStorage.getItem('CookieClickerGameId');
 
     const react = this;
     if(!gameId) {
-      console.log('Home.getMeteorData no game id');
       Meteor.call('createGame', (error, result) => {
-        console.log('Home.getMeteorData result = ', result);
-        react.gameId = result;
+        const gameId = result;
+        localStorage.setItem('CookieClickerGameId', gameId);
+        react.forceUpdate();
       });
     }
 
     return {
-      isGameId: !!gameId
+      gameId: gameId
     }
   },
 
   render() {
 
-    if(!this.data.isGameId) {
+    if(!this.data.gameId) {
       return (
         <p>Loading</p>
       )

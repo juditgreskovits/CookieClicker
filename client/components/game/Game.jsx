@@ -35,7 +35,7 @@ Game = React.createClass({
       <div style={style}>
         <Header gameId={game._id} clicks={game.clicks} />
         <Cookie gameId={game._id} />
-        <Store clicks={game.clicks} />
+        <Store gameId={game._id} clicks={game.clicks} />
       </div>
     )
   }

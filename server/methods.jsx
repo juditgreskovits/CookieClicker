@@ -17,5 +17,8 @@ Meteor.methods({
     console.log('cookieClick gameId = ' + gameId);
     check(gameId, String);
     check(specialId, String);
+
+    const game = Games.find({ id : gameId });
+    console.log('*** game.specials = ', game.specials);
   }
 });

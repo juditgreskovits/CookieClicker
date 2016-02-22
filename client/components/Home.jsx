@@ -3,7 +3,8 @@ Home = React.createClass({
   mixins: [ReactMeteorData],
 
   getMeteorData() {
-    var gameId = localStorage.getItem('CookieClickerGameId');
+
+    const gameId = this.props.gameId ? this.props.gameId : localStorage.getItem('CookieClickerGameId');
 
     const react = this;
     if(!gameId) {
@@ -28,7 +29,7 @@ Home = React.createClass({
     }
 
     return (
-      <Cookie gameId={this.data.gameId} />
+      <Game gameId={this.data.gameId} />
     )
   }
 })

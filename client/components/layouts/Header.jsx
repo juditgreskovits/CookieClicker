@@ -16,10 +16,24 @@ Header = React.createClass({
 
   render() {
 
+    const gameId = this.props.gameId;
+    const clicks = this.props.clicks;
+
+    const divStyle = {
+      position: 'fixed',
+      width: '100%',
+      backgroundColor: '#ffffff',
+      boxShadow: '0 1px 10px 5px rgba(0, 0, 0, 0.3)'
+    }
+
+    const h1Style = {
+      textAlign: 'center'
+    }
+
     return (
-      <p>Header</p>
+      <div style={divStyle}>
+        <h1 style={h1Style}>{clicks} cookies</h1>
+      </div>
     )
   }
-
-
 });

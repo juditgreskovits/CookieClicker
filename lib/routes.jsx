@@ -1,34 +1,43 @@
 
 FlowRouter.notFound = {
   action() {
-    ReactLayout.render(MainLayout, { 
+    ReactLayout.render(MainLayout, {
       content:  <NotFound />
     });
   }
 };
 
 FlowRouter.route('/',{
-  name: 'Home', 
+  name: 'Home',
   action(params) {
-    ReactLayout.render(MainLayout, { 
+    ReactLayout.render(MainLayout, {
       content:  <Home />
     });
   }
 });
 
-FlowRouter.route('/signup',{
-  name: 'Signup', 
+FlowRouter.route('/game/:gameId',{
+  name: 'Home',
   action(params) {
-    ReactLayout.render(MainLayout, { 
+    ReactLayout.render(MainLayout, {
+      content:  <Home gameId={params.gameId}/>
+    });
+  }
+});
+
+FlowRouter.route('/signup',{
+  name: 'Signup',
+  action(params) {
+    ReactLayout.render(MainLayout, {
       content:  <SignUp />
     });
   }
 });
 
 FlowRouter.route('/signin',{
-  name: 'Home', 
+  name: 'Home',
   action(params) {
-    ReactLayout.render(MainLayout, { 
+    ReactLayout.render(MainLayout, {
       content:  <SignIn />
     });
   }

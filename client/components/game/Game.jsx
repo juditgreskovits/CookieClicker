@@ -1,4 +1,4 @@
-Cookie = React.createClass({
+Game = React.createClass({
 
   mixins: [ReactMeteorData],
 
@@ -14,15 +14,6 @@ Cookie = React.createClass({
     }
   },
 
-  onCookieClick() {
-
-    const gameId = this.data.game._id;
-
-    Meteor.call('cookieClick', gameId, (error, result) => {
-				console.log('error = ' + error + ' result = ' + result);
-		});
-  },
-
   render() {
 
     const loading = this.data.loading;
@@ -35,10 +26,15 @@ Cookie = React.createClass({
 
     const game = this.data.game;
 
+    const style = {
+      width: '100%',
+      height: '100%'
+    }
+
     return (
-      <div>
-        <p>Clicks: {this.data.game.clicks}</p>
-        <button onClick={this.onCookieClick}>Cookie</button>
+      <div style={style}>
+        <Header gameId={game._id} clicks={game.clicks} />
+        <Cookie gameId={game._id} />
       </div>
     )
   }

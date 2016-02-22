@@ -9,15 +9,12 @@ Special = React.createClass({
 
   render() {
 
-    /*var divStyle = {
-      height: '100%',
-      width: '50%',
-      backgroundImage: 'url("/images/cloth.png")',
-      backgroundRepeat: 'repeat',
-      backgroundSize: '100px 100px'
+    var divStyle = {
+      width: '100%',
+      borderBottom: '1px solid #cccccc'
     }
 
-    var cookieStyle = {
+    /*var cookieStyle = {
       display: 'inline-block',
       zoom: '1',
       width: '80%',

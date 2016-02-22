@@ -5,12 +5,14 @@ Store = React.createClass({
   getMeteorData () {
 
     const clicks = this.props.clicks;
-    const storeSubHandle = Meteor.subscribe('store');
+    const storeSubHandle = Meteor.subscribe('specials');
     const loading = !storeSubHandle.ready();
+
+    console.log('Store.getMeteorData clicks = ' + clicks);
 
     return {
       loading: loading,
-      specials: Store.find().fetch()
+      specials: Specials.find({ clicks : { $lte : clicks }}).fetch()
     }
   },
 
@@ -19,13 +21,13 @@ Store = React.createClass({
   },
 
   renderSpecials () {
-    const specials = this.data.game;
+    const specials = this.data.specials;
 
     return specials.map((special, index) => {
 
-			const specialId = specials._id;
-			const specialTitle = specials.title;
-			const specialDescription = specials.description;
+			const specialId = special._id;
+			const specialTitle = special.title;
+			const specialDescription = special.description;
 
 			return (
 				<Special key={specialId} onSpecialClick={this.onSpecialClick} id={specialId} title={specialTitle} description={specialDescription} />
@@ -46,6 +48,8 @@ Store = React.createClass({
     const specials = this.renderSpecials();
 
     const style = {
+      paddingTop: '80px',
+      float: 'right',
       width: '50%',
       height: '100%'
     }

@@ -1,2 +1,2 @@
 Games = new Mongo.Collection('games');
-Store = new Mongo.Collection('store');
+Specials = new Mongo.Collection('specials');

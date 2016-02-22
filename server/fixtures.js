@@ -14,7 +14,7 @@ if(Games.find().count() === 0) {
 }
 
 
-if(Store.find().count() === 0) {
+if(Specials.find().count() === 0) {
 
 	var specials = [
 		{ component: 'Cursor', title : 'Cursor', description : 'Clicks for you every 10 seconds', clicks : 15},
@@ -24,6 +24,6 @@ if(Store.find().count() === 0) {
 	for( var i = 0; i< specials.length; i++) {
 
 		var special = specials[i];
-		Store.insert(special);
+		Specials.insert(special);
 	}
 }

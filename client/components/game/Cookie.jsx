@@ -12,6 +12,7 @@ Cookie = React.createClass({
   render() {
 
     var divStyle = {
+      float: 'left',
       height: '100%',
       width: '50%',
       backgroundImage: 'url("/images/cloth.png")',

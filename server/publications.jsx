@@ -2,7 +2,7 @@ Games.publicFields = {
 
 }
 
-Store.publicFields = {
+Specials.publicFields = {
 
 }
 
@@ -13,8 +13,8 @@ Meteor.publish('games', function() {
   });
 });
 
-Meteor.publish('store', function() {
-  return Store.find({}, {
-    fields: Store.publicFields
+Meteor.publish('specials', function() {
+  return Specials.find({}, {
+    fields: Specials.publicFields
   });
 });

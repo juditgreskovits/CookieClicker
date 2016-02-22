@@ -4,30 +4,31 @@ Home = React.createClass({
 
   getMeteorData() {
     return {
-      currentUser: Meteor.user()
+      game: Games.findOne()
     }
   },
 
-  signup(e) {
-    e.preventDefault();
-    FlowRouter.go('/signup');
+  onCookieClick() {
+
+    const gameId = this.data.game._id;
+
+    console.log('Home.onCookieClick gameId = ' + gameId);
+
+    Meteor.call('cookieClick', gameId, (error, result) => {
+				console.log('error = ' + error + ' result = ' + result);
+				// react.history.pushState(null, '/results');
+			});
+
   },
 
   render() {
-    return (
-      <div className="home-page">
-        <div className="container">
-          <h1>Welcome</h1>
-          <p>
-          Main Header
-          </p>
-          { this.data.currentUser ? 
-            ""
-          :
-            <p><a className="btn btn-primary btn-lg" href="#" role="button" onClick={ this.signup }>Sign Up</a></p>
-          }
 
-        </div>
+    console.log('Home.render this.data.game.clicks = ' + this.data.game.clicks);
+
+    return (
+      <div>
+        <p>Clicks: {this.data.game.clicks}</p>
+        <button onClick={this.onCookieClick}>Cookie</button>
       </div>
     )
   }

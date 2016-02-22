@@ -1,5 +1,6 @@
 accounts-base@1.2.2
 accounts-password@1.1.4
+amplify@1.0.0
 audit-argument-checks@1.0.4
 autopublish@1.0.4
 autoupdate@1.2.4
@@ -84,6 +85,7 @@ templating@1.1.5
 templating-tools@1.0.0
 tracker@1.0.9
 twbs:bootstrap@3.3.5
+u2622:persistent-session@0.4.4
 ui@1.0.8
 underscore@1.0.4
 url@1.0.5

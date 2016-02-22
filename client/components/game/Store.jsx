@@ -18,6 +18,12 @@ Store = React.createClass({
 
   onSpecialClick (specialId) {
     console.log('Store.onSpecialClick specialId = ' + specialId);
+
+    const gameId = this.props.gameId;
+
+    Meteor.call('buySpecial', gameId, specialId, (error, result) => {
+				console.log('error = ' + error + ' result = ' + result);
+		});
   },
 
   renderSpecials () {

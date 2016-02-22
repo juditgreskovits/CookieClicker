@@ -8,8 +8,6 @@ Store = React.createClass({
     const storeSubHandle = Meteor.subscribe('specials');
     const loading = !storeSubHandle.ready();
 
-    console.log('Store.getMeteorData clicks = ' + clicks);
-
     return {
       loading: loading,
       specials: Specials.find({ clicks : { $lte : clicks }}).fetch()
@@ -17,7 +15,6 @@ Store = React.createClass({
   },
 
   onSpecialClick (specialId) {
-    console.log('Store.onSpecialClick specialId = ' + specialId);
 
     const gameId = this.props.gameId;
 

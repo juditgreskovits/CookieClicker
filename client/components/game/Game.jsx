@@ -14,6 +14,16 @@ Game = React.createClass({
     }
   },
 
+  renderSpecials () {
+
+    const gameId = this.data.game._id;
+    const cursors = this.data.game.specials.Cursor;
+
+    if(cursors > 0) {
+      return <Cursor gameId={gameId} total={cursors} />
+    }
+  },
+
   render() {
 
     const loading = this.data.loading;
@@ -25,6 +35,8 @@ Game = React.createClass({
     }
 
     const game = this.data.game;
+    const clicks = game.clicks - game.spentClicks;
+    const specials = this.renderSpecials();
 
     const style = {
       width: '100%',
@@ -33,9 +45,10 @@ Game = React.createClass({
 
     return (
       <div style={style}>
-        <Header gameId={game._id} clicks={game.clicks} />
+        <Header gameId={game._id} clicks={clicks} />
         <Cookie gameId={game._id} />
-        <Store gameId={game._id} clicks={game.clicks} />
+        <Store gameId={game._id} clicks={clicks} />
+        {specials}
       </div>
     )
   }

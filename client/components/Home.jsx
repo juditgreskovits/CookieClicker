@@ -3,33 +3,32 @@ Home = React.createClass({
   mixins: [ReactMeteorData],
 
   getMeteorData() {
-    return {
-      game: Games.findOne()
+    var gameId = Session.get('CookieClickerGameId');
+
+    const react = this;
+    if(!gameId) {
+      console.log('Home.getMeteorData no game id');
+      Meteor.call('createGame', (error, result) => {
+        console.log('Home.getMeteorData result = ', result);
+        react.gameId = result;
+      });
     }
-  },
 
-  onCookieClick() {
-
-    const gameId = this.data.game._id;
-
-    console.log('Home.onCookieClick gameId = ' + gameId);
-
-    Meteor.call('cookieClick', gameId, (error, result) => {
-				console.log('error = ' + error + ' result = ' + result);
-				// react.history.pushState(null, '/results');
-			});
-
+    return {
+      isGameId: !!gameId
+    }
   },
 
   render() {
 
-    console.log('Home.render this.data.game.clicks = ' + this.data.game.clicks);
+    if(!this.data.isGameId) {
+      return (
+        <p>Loading</p>
+      )
+    }
 
     return (
-      <div>
-        <p>Clicks: {this.data.game.clicks}</p>
-        <button onClick={this.onCookieClick}>Cookie</button>
-      </div>
+      <Cookie gameId={this.data.gameId} />
     )
   }
 })

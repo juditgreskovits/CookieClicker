@@ -1,6 +1,11 @@
 Meteor.methods({
 
-'cookieClick': function (gameId) {
+  'createGame': function () {
+    console.log('createGame');
+    return Games.insert({ clicks: 0 });
+  },
+
+  'cookieClick': function (gameId) {
 
     console.log('cookieClick gameId = ' + gameId);
     check(gameId, String);

@@ -23,7 +23,9 @@ Meteor.methods({
     console.log(`special.component  = ${special.component}`);
     // const updateSpecial = {};
     // updateSpecial[ special.id ] = 1;
-    Games.update({ _id : gameId }, { specials : { $inc : { [`special.component`] : 1 }}});
+    const updateQuery = {$inc:{}};
+    updateQuery.$inc['specials.' + special.component] = 1
+    Games.update({ _id : gameId }, updateQuery);
 
     console.log('*** game.specials = ', game.specials);
   }

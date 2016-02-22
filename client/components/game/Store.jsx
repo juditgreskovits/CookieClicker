@@ -16,8 +16,8 @@ Store = React.createClass({
     }
   },
 
-  onSpecialClick () {
-    console.log('Store.onSpecialClick');
+  onSpecialClick (specialId) {
+    console.log('Store.onSpecialClick specialId = ' + specialId);
   },
 
   renderSpecials () {
@@ -49,6 +49,7 @@ Store = React.createClass({
 
     const style = {
       paddingTop: '80px',
+      borderLeft: '1px solid #cccccc',
       float: 'right',
       width: '50%',
       height: '100%'

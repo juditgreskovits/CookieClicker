@@ -11,7 +11,9 @@ Special = React.createClass({
 
     var divStyle = {
       width: '100%',
-      borderBottom: '1px solid #cccccc'
+      padding: '5px 10px',
+      borderBottom: '1px solid #cccccc',
+      cursor: 'pointer'
     }
 
     /*var cookieStyle = {
@@ -31,7 +33,7 @@ Special = React.createClass({
     const description = this.props.description;
 
     return (
-      <div style={divStyle}>
+      <div style={divStyle} onClick={this.onSpecialClick}>
         <h5>{title}</h5>
         <p>{description}</p>
       </div>

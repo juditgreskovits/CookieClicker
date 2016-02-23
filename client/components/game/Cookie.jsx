@@ -1,5 +1,9 @@
 Cookie = React.createClass({
 
+  fakeClicks(clicks) {
+
+  },
+
   onCookieClick() {
 
     const gameId = this.props.gameId;
@@ -12,6 +16,7 @@ Cookie = React.createClass({
   render() {
 
     var divStyle = {
+      position: 'relative',
       float: 'left',
       height: '100%',
       width: '50%',
@@ -21,11 +26,13 @@ Cookie = React.createClass({
     }
 
     var cookieStyle = {
+      position: 'absolute',
       display: 'inline-block',
       zoom: '1',
       width: '80%',
       paddingTop: '76%',
-      margin: '20% 10%',
+      left: '10%',
+      top: '25%',
       border: 'none',
       backgroundImage: 'url("/images/cookie.png")',
       backgroundRepeat: 'no-repeat',
@@ -33,9 +40,21 @@ Cookie = React.createClass({
       backgroundColor: 'transparent'
     }
 
+    // var cookie = ReactDOM.findDOMNode(this.refs.cookie);
+    // var radius = $(cookie).width()/2;
+    // console.log('Cookie.render radius = ' + radius);
+    // var x = getClickPosition(radius);
+    // var y = getClickPosition(radius);
+
+
     return (
       <div style={divStyle}>
-        <button style={cookieStyle} onClick={this.onCookieClick}></button>
+        <button style={cookieStyle} onClick={this.onCookieClick} ref="cookie">
+          <FakeClick/>
+          <FakeClick/>
+          <FakeClick/>
+          <FakeClick/>
+        </button>
       </div>
     )
   }

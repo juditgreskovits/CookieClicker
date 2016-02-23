@@ -4,11 +4,13 @@ Cursor = React.createClass({
 
     const gameId = this.props.gameId;
     const inc = this.props.total;
+    const react = this;
 
     const clickInterval = setInterval(function() {
       console.log('Cursor is clicking inc = ' + inc);
       Meteor.call('cookieClick', gameId, inc, (error, result) => {
   				// console.log('error = ' + error + ' result = ' + result);
+          react.props.onCursor(inc);
   		});
     }, 10000);
 
@@ -21,14 +23,31 @@ Cursor = React.createClass({
     clearInterval( clickInterval );
   },
 
-  createClickInterval() {
+  renderFakeClicks() {
 
+    let fakeClicks = [];
+    const total = this.props.total;
+
+    while(fakeClicks.length < total) {
+      stars.push(<FakeClick />);
+    }
+
+    return fakeClicks;
   },
 
   render() {
 
+    const fakeClicks = this.renderFakeClicks();
+
+    const divStyle = {
+      width: '100%',
+      height: '100%'
+    }
+
     return (
-      <p>Cursor</p>
+      <div style={divStyle}>
+        {fakeClicks}
+      </div>
     )
   }
 })

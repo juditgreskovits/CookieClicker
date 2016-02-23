@@ -8,7 +8,7 @@ Cursor = React.createClass({
     const clickInterval = setInterval(function() {
       console.log('Cursor is clicking inc = ' + inc);
       Meteor.call('cookieClick', gameId, inc, (error, result) => {
-  				console.log('error = ' + error + ' result = ' + result);
+  				// console.log('error = ' + error + ' result = ' + result);
   		});
     }, 10000);
 

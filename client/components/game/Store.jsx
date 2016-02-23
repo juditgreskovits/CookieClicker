@@ -25,15 +25,18 @@ Store = React.createClass({
 
   renderSpecials () {
     const specials = this.data.specials;
+    const gameSpecials = this.props.gameSpecials;
 
     return specials.map((special, index) => {
 
 			const specialId = special._id;
 			const specialTitle = special.title;
 			const specialDescription = special.description;
+      const specialClicks = special.clicks;
+      const gameSpecial = gameSpecials[special.component];
 
 			return (
-				<Special key={specialId} onSpecialClick={this.onSpecialClick} id={specialId} title={specialTitle} description={specialDescription} />
+				<Special key={specialId} onSpecialClick={this.onSpecialClick} id={specialId} title={specialTitle} description={specialDescription} clicks={specialClicks} gameSpecial={gameSpecial}/>
 			)
 		});
   },

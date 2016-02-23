@@ -39,6 +39,19 @@ Header = React.createClass({
     this.setState( { changingGameName: false } );
   },
 
+  renderLink() {
+    // const gameId = this.props.gameId ? this.props.gameId : localStorage.getItem('CookieClickerGameId');
+    let gameString = ""
+    if ( this.props.gameId )  {
+      gameString = this.props.gameId;
+    }
+    else {
+      gameString = localStorage.getItem('CookieClickerGameId');
+    }
+    
+    return <h4>Link: cookie-clicker.meteor.com/game/{ gameString }</h4>
+  },
+
   render() {
 
     const gameId = this.props.gameId;
@@ -47,7 +60,6 @@ Header = React.createClass({
     const divStyle = {
       position: 'fixed',
       width: '100%',
-      height: '80px',
       backgroundColor: '#ffffff',
       boxShadow: '0 1px 10px 5px rgba(0, 0, 0, 0.3)'
     }
@@ -61,7 +73,7 @@ Header = React.createClass({
         <div className="container change-name">
           <div className="row">
             
-            <div className="col-xs-6">
+            <div className="col-xs-3">
               
               { this.state.changingGameName ? 
                 <div>
@@ -87,8 +99,13 @@ Header = React.createClass({
               }
             </div>
 
+            <div className="col-xs-3">
+              <h1 style={ h1Style }>{ clicks }</h1>
+              <img src="/images/cookie_small.png" alt="cookie"/>
+            </div>
+
             <div className="col-xs-6">
-              <h1 style={ h1Style }>{ clicks } cookies</h1>
+              { this.renderLink() }
             </div>
 
           </div>

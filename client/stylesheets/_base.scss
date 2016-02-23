@@ -42,10 +42,22 @@ button:focus {
 }
 
 .change-name {
-  h4 {
+  padding: 20px 0 10px 0;
+  text-align: center;
+
+  h1, h4 {
     display: inline-block;
-    margin-right: 20px;
+    margin: 0 10px 0 0;
   }
+
+  h4 {
+    padding-top: 15px;
+  }
+
+  img {
+    padding-bottom: 12px;
+  }
+
   form {
     display: inline-block;
   }

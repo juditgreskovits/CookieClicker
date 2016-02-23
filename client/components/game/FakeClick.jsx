@@ -1,14 +1,26 @@
 FakeClick = React.createClass({
 
   animate() {
+
     const click = ReactDOM.findDOMNode(this.refs.click);
+    const position = this.getClickPosition();
+
+    $(click).css({
+      position: 'absolute',
+      top: 50 + position.y + '%',
+      left: 50 + position.x + '%',
+      width: '10px',
+      height: '10px',
+      opacity: 1,
+    });
+
     $(click).animate({
       opacity: 0,
       width: "+=50",
       height: "+=50",
       top: "-=25",
       left: "-=25",
-    }, 2500, function() {
+    }, 1500, function() {
       // Animation complete.
     });
   },
@@ -23,19 +35,14 @@ FakeClick = React.createClass({
 
   render () {
 
-    const position = this.getClickPosition();
-
-    console.log()
-
     const clickStyle = {
       position: 'absolute',
-      top: 50 + position.y + '%',
-      left: 50 + position.x + '%',
       width: '10px',
       height: '10px',
       backgroundColor : '#ff0000',
-      borderRadius: "50%"
-    }
+      borderRadius: "50%",
+      opacity: 0,
+    };
 
     return (
       <div style={clickStyle} ref="click"></div>

@@ -1,17 +1,42 @@
 Header = React.createClass({
-  mixins: [ReactMeteorData],
 
-  getMeteorData() {
-    return {
-      currentUser: Meteor.user()
+  getInitialState() {
+    return { 
+      changingGameName: false,
+      gameName: null
     }
   },
 
-  handleSignOut() {
-    Meteor.logout((error, success) => {
-      if (error) console.log(error);
-      FlowRouter.go("/");
-    });
+  mixins: [ReactMeteorData],
+
+  getMeteorData() {
+
+    let gamesSub = Meteor.subscribe('games');
+
+    return {
+      currentUser: Meteor.user(),
+      myGame: Games.findOne({ _id: this.props.gameId })
+    }
+  },
+
+  componentDidMount() {
+    if ( !this.data.myGame.name ) {
+      this.setState({ gameName: this.props.gameId });
+    } else {
+      this.setState({ gameName: this.data.myGame.name });
+    }
+  },
+
+  changeName() {
+    this.setState( { changingGameName: true } );
+  },
+
+  submitForm(e) {
+    e.preventDefault();
+    const newName = this.refs.newName.value.trim();
+    this.setState( { gameName: newName } );
+    Meteor.call("updateGameName", this.props.gameId, newName);
+    this.setState( { changingGameName: false } );
   },
 
   render() {
@@ -34,7 +59,41 @@ Header = React.createClass({
 
     return (
       <div style={divStyle}>
-        <h1 style={h1Style}>{clicks} cookies</h1>
+        <div className="container change-name">
+          <div className="row">
+            
+            <div className="col-xs-6">
+              
+              { this.state.changingGameName ? 
+                <div>
+                  <h4>Game: </h4>
+                  <form role="form" onSubmit={ this.submitForm }>
+
+                    <div className="form-group">
+                      <input 
+                        type="text"
+                        ref="newName"
+                        className="form-control" 
+                        placeholder="New game name" 
+                      />
+                    </div>
+
+                  </form>
+                </div>  
+              :
+                <div>
+                  <h4>Game: { this.state.gameName }</h4>
+                  <button className="btn btn-submit" onClick={ this.changeName }>Change</button>
+                </div>
+              }
+            </div>
+
+            <div className="col-xs-6">
+              <h1 style={ h1Style }>{ clicks } cookies</h1>
+            </div>
+
+          </div>
+        </div>
       </div>
     )
   }

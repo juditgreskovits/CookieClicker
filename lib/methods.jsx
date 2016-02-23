@@ -29,5 +29,13 @@ Meteor.methods({
 
     Games.update({ _id : gameId }, updateQuery);
     Games.update({ _id : gameId }, {$inc : { spentClicks : special.clicks }});
-  }
+  },
+
+  updateGameName(gameId, name) {
+    check( gameId, String );
+    check( name, String );
+    
+    Games.update( { _id: gameId }, { $set: { name: name} } );
+  },
+
 });

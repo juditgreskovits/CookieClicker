@@ -63,6 +63,7 @@ Game = React.createClass({
           {specials}
         </Cookie>
         <Store gameId={game._id} clicks={clicks} gameSpecials={game.specials}/>
+        
       </div>
     )
   }

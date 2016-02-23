@@ -49,7 +49,7 @@ Header = React.createClass({
       gameString = localStorage.getItem('CookieClickerGameId');
     }
     
-    return <h4>Link: cookie-clicker.meteor.com/game/{ gameString }</h4>
+    return <h4 className="game-link">Link: cookie-clicker.meteor.com/game/{ gameString }</h4>
   },
 
   render() {
@@ -74,7 +74,7 @@ Header = React.createClass({
         <div className="container change-name">
           <div className="row">
             
-            <div className="col-xs-3">
+            <div className="col-xs-4">
               
               { this.state.changingGameName ? 
                 <div>
@@ -100,7 +100,7 @@ Header = React.createClass({
               }
             </div>
 
-            <div className="col-xs-3">
+            <div className="col-xs-2">
               <h1 style={ h1Style }>{ clicks }</h1>
               <img src="/images/cookie_small.png" alt="cookie"/>
             </div>

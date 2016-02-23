@@ -20,18 +20,24 @@ Game = React.createClass({
   },
 
   renderSpecials () {
-    console.log('renderSpecials cursors = '+ cursors);
+
     const gameId = this.data.game._id;
     const cursors = this.data.game.specials.Cursor;
+    const grandmas = this.data.game.specials.Grandma;
+    let specials = [];
 
     if(cursors > 0) {
-      return <Cursor gameId={gameId} total={cursors} />
+      specials.push(<Cursor key="cursor" gameId={gameId} total={cursors} seconds={10} cookies={1}/>);
     }
+
+    if(grandmas > 0) {
+      specials.push(<Cursor key="grandma" gameId={gameId} total={cursors} seconds={60} cookies={30}/>);
+    }
+
+    return specials;
   },
 
   render() {
-
-    console.log('Game.render');
 
     const loading = this.data.loading;
 

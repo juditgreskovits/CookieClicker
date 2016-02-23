@@ -2,8 +2,12 @@ Cursor = React.createClass({
 
   componentDidMount () {
 
+    const cookies = this.props.cookies ? this.props.cookies : 1;
+    const seconds = this.props.seconds ? this.props.seconds : 10;
+
     const gameId = this.props.gameId;
-    const inc = this.props.total;
+    const inc = this.props.total * cookies;
+    const interval = seconds * 1000;
     const react = this;
 
     const clickInterval = setInterval(function() {
@@ -12,7 +16,7 @@ Cursor = React.createClass({
             react.animateFakeClicks();
           }
   		});
-    }, 10000);
+    }, interval);
 
     this.setState({ clickInterval : clickInterval });
   },
@@ -31,7 +35,8 @@ Cursor = React.createClass({
   renderFakeClicks() {
 
     let fakeClicks = [];
-    const total = this.props.total;
+    const cookies = this.props.cookies ? this.props.cookies : 1;
+    const total = this.props.total * cookies;
 
     while(fakeClicks.length < total) {
       const key = 'fakeClick' + fakeClicks.length;

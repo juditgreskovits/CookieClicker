@@ -30,7 +30,7 @@ Cookie = React.createClass({
       left: '10%',
       top: '25%',
       border: 'none',
-      backgroundImage: 'url("/images/cookie.png")',
+      backgroundImage: 'url("/images/cookie_transparent.png")',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
       backgroundColor: 'transparent'

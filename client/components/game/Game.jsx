@@ -14,6 +14,11 @@ Game = React.createClass({
     }
   },
 
+  onCursor(clicks) {
+
+    this.refs.cookie.fakeClicks(clicks);
+  },
+
   renderSpecials () {
     console.log('renderSpecials cursors = '+ cursors);
     const gameId = this.data.game._id;
@@ -48,9 +53,10 @@ Game = React.createClass({
     return (
       <div style={style}>
         <Header gameId={game._id} clicks={clicks} />
-        <Cookie gameId={game._id} />
+        <Cookie ref="cookie" gameId={game._id}>
+          {specials}
+        </Cookie>
         <Store gameId={game._id} clicks={clicks} gameSpecials={game.specials}/>
-        {specials}
       </div>
     )
   }

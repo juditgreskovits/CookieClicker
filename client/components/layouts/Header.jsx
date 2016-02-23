@@ -59,6 +59,7 @@ Header = React.createClass({
 
     const divStyle = {
       position: 'fixed',
+      zIndex : '1000',
       width: '100%',
       backgroundColor: '#ffffff',
       boxShadow: '0 1px 10px 5px rgba(0, 0, 0, 0.3)'

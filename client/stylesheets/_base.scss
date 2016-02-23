@@ -40,3 +40,13 @@ button:focus {
     color: $grey
   }
 }
+
+.change-name {
+  h4 {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  form {
+    display: inline-block;
+  }
+}

@@ -1,7 +1,7 @@
 Meteor.methods({
 
   'createGame': function () {
-    
+
     return Games.insert({ clicks : 100, spentClicks: 0, specials : { Cursor : 0, Grandma : 0 }});
   },
 
@@ -24,17 +24,19 @@ Meteor.methods({
     const game = Games.findOne({ _id : gameId });
     const special = Specials.findOne({ _id : specialId });
 
-    const updateQuery = {$inc:{}};
+    const updateQuery = {$inc:{spentClicks : special.clicks}};
     updateQuery.$inc['specials.' + special.component] = 1
-
-    Games.update({ _id : gameId }, updateQuery);
-    Games.update({ _id : gameId }, {$inc : { spentClicks : special.clicks }});
+    Games.update({ _id : gameId }, updateQuery, (err, nrEffectedDocuments) => {
+      if (err) throw new Meteor.Error('errort', err)
+      if (nrEffectedDocuments == 0) throw new Meteor.Error('No document updated');
+    });
+    // Games.update({ _id : gameId }, {$inc : { spentClicks : special.clicks }});
   },
 
   updateGameName(gameId, name) {
     check( gameId, String );
     check( name, String );
-    
+
     Games.update( { _id: gameId }, { $set: { name: name} } );
   },
 
